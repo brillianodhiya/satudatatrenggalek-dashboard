@@ -20,13 +20,12 @@ RUN apt-get update && apt-get install -y \
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
-    NODE_ENV=production \
     PORT=3000
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 
 COPY tsconfig.json ./
 COPY src/ ./src/
@@ -35,9 +34,6 @@ COPY public/ ./public/
 # Copy built React Dashboard from Stage 1 into public/dashboard
 COPY --from=dashboard-builder /app/public/dashboard ./public/dashboard
 
-# Compile TypeScript Gateway Server
-RUN npx tsc
-
 EXPOSE 3000
 
-CMD ["node", "dist/server.js"]
+CMD ["npx", "ts-node", "src/server.ts"]
