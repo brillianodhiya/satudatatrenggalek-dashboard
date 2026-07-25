@@ -1,0 +1,32 @@
+# Environment & API Secret Keys (SANGAT PENTING: JANGAN DI-PUSH KE GITHUB)
+.env
+.env.local
+.env.production
+*.env
+
+# Dependencies
+node_modules/
+dashboard/node_modules/
+
+# Production Build Directories
+dist/
+public/dashboard/assets/
+public/dashboard/index.html
+
+# Chrome & Browser Puppeteer Profiles
+.chrome-debug-profile/
+.chrome-profile/
+
+# Cache & Temporary Files
+.tempmediaStorage/
+.system_generated/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE & OS Metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

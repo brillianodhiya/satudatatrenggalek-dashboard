@@ -1,0 +1,21 @@
+{
+  "executiveSummary": "Kabupaten Trenggalek menunjukkan kemajuan signifikan dalam beberapa sektor, namun masih perlu perhatian khusus pada pemberdayaan perempuan dan pengentasan kemiskinan. Dengan rasio elektrifikasi yang tinggi dan indeks kepuasan masyarakat yang baik, Trenggalek memiliki fondasi yang kuat untuk pengembangan lebih lanjut.",
+  "topPriorityKecamatan": "Kecamatan Pule, Dongko, dan Watulimo",
+  "policyRecommendations": [
+    {
+      "sektor": "Pemberdayaan Perempuan",
+      "rekomendasi": "Meningkatkan keterwakilan perempuan di DPRD dan pemerintahan daerah melalui pelatihan dan pendampingan.",
+      "dampak": "Meningkatkan persentase keterwakilan perempuan di DPRD menjadi 15% dalam 12 bulan."
+    },
+    {
+      "sektor": "Pengentasan Kemiskinan",
+      "rekomendasi": "Mengembangkan program pelatihan keterampilan dan pendampingan usaha mikro untuk masyarakat miskin.",
+      "dampak": "Mengurangi indeks keparahan kemiskinan menjadi 0,15 point dalam 12 bulan."
+    },
+    {
+      "sektor": "Lingkungan Hidup",
+      "rekomendasi": "Mengintensifkan pengelolaan sampah dan meningkatkan kesadaran masyarakat tentang pentingnya lingkungan hidup yang bersih.",
+      "dampak": "Meningkatkan persentase sampah yang terkelola menjadi 80% dalam 12 bulan."
+    }
+  ]
+}

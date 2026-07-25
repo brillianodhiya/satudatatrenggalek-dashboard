@@ -1,0 +1,43 @@
+{
+  "name": "trenggaleksatudataopenapi",
+  "version": "1.0.0",
+  "description": "Scraper, OpenAPI Generator, and Unified REST API Proxy for Satu Data Trenggalek",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node-dev --respawn src/server.ts",
+    "scrape": "ts-node src/cli/scrapeAndGenerate.ts",
+    "crawl": "ts-node src/crawler/crawlAll408.ts"
+  },
+  "keywords": [
+    "trenggalek",
+    "open-data",
+    "openapi",
+    "swagger",
+    "proxy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "puppeteer": "^24.1.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "swagger-ui-express": "^5.0.1",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.0",
+    "@types/swagger-ui-express": "^4.1.7",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
+  }
+}
