@@ -11,15 +11,15 @@ services:
       - PORT=3000
       - GROQ_API_KEY=${GROQ_API_KEY}
       - NODE_ENV=production
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-  # Automatic HTTPS & Reverse Proxy for trenggalek.titanialab.com / satudata-trenggalek.titanialab.com
+  # Automatic HTTPS & Reverse Proxy for trenggalek.titanialab.com
   caddy:
     image: caddy:latest
     container_name: caddy-ssl-proxy
