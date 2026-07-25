@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: trenggalek_api_gateway
     restart: always
     environment:
       - PORT=3000
@@ -17,3 +18,13 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: trenggalek_cf_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - trenggalek-api-gateway
