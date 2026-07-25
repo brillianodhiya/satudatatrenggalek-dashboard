@@ -11,7 +11,7 @@ services:
       - GROQ_API_KEY=${GROQ_API_KEY}
       - NODE_ENV=production
     ports:
-      - "3000:3000"
+      - "3001:3000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 30s
