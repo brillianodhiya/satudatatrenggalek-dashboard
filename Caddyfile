@@ -1,0 +1,13 @@
+# Automatic HTTPS & Reverse Proxy for titanialab.com
+satudata.titanialab.com {
+    reverse_proxy trenggalek-api-gateway:3000
+
+    # Enable compression & security headers
+    encode gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        X-XSS-Protection "1; mode=block"
+    }
+}
