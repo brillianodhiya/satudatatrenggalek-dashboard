@@ -1,5 +1,5 @@
-# Automatic HTTPS & Reverse Proxy for titanialab.com
-satudata.titanialab.com {
+# Automatic HTTPS & Reverse Proxy for Trenggalek Satu Data Portal
+trenggalek.titanialab.com, satudata-trenggalek.titanialab.com, trenggaleksatudata.titanialab.com {
     reverse_proxy trenggalek-api-gateway:3000
 
     # Enable compression & security headers

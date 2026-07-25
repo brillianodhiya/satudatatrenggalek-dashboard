@@ -19,7 +19,7 @@ services:
       timeout: 10s
       retries: 3
 
-  # Automatic HTTPS & Reverse Proxy for satudata.titanialab.com
+  # Automatic HTTPS & Reverse Proxy for trenggalek.titanialab.com / satudata-trenggalek.titanialab.com
   caddy:
     image: caddy:latest
     container_name: caddy-ssl-proxy
