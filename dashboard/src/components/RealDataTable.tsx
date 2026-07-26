@@ -221,7 +221,7 @@ export const RealDataTable: React.FC<RealDataTableProps> = ({
                     {/* Combined Value + Unit Badge */}
                     <td className="py-3 px-4">
                       {formattedVal ? (
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold font-mono text-xs shadow-sm">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-800/80 text-cyan-300 border border-slate-700/80 font-bold font-mono text-xs shadow-sm">
                           {formattedVal}
                         </span>
                       ) : (

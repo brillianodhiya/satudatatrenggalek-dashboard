@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link2 } from 'lucide-react';
+import { Link2, ShieldCheck, Users } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { KpiGrid } from './components/KpiGrid';
@@ -10,6 +10,8 @@ import { RealDataTable } from './components/RealDataTable';
 import { KecamatanGrid } from './components/KecamatanGrid';
 import { OpenApiTab } from './components/OpenApiTab';
 import { FloatingAiChat } from './components/FloatingAiChat';
+import { ArchitectureDocsModal } from './components/ArchitectureDocsModal';
+import { TitaniaLabsTeamModal } from './components/TitaniaLabsTeamModal';
 import { INITIAL_KPIS } from './data/mockData';
 import { KpiItem } from './types';
 import { parseRealKpisFrom881, Dataset881Item, FALLBACK_881_ITEMS } from './utils/realDataParser';
@@ -22,6 +24,8 @@ export function App() {
   const [kpis, setKpis] = useState<KpiItem[]>(INITIAL_KPIS);
   const [isLiveApiConnected, setIsLiveApiConnected] = useState(false);
   const [dataset881Items, setDataset881Items] = useState<Dataset881Item[]>([]);
+  const [isArchDocsOpen, setIsArchDocsOpen] = useState(false);
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
 
   // Fetch 100% authentic dataset 881 from API Gateway on mount
   useEffect(() => {
@@ -155,11 +159,46 @@ export function App() {
       {/* Floating AI Chat Assistant Widget (Bottom-Right Corner) */}
       <FloatingAiChat />
 
+      {/* Architecture & Security Docs Modal */}
+      <ArchitectureDocsModal
+        isOpen={isArchDocsOpen}
+        onClose={() => setIsArchDocsOpen(false)}
+      />
+
+      {/* TitaniaLabs Development Team Modal */}
+      <TitaniaLabsTeamModal
+        isOpen={isTeamModalOpen}
+        onClose={() => setIsTeamModalOpen(false)}
+      />
+
       {/* Executive Footer */}
       <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>&copy; 2026 TitaniaLabs &bull; Trenggalek Smart Data & AI Intelligence Gateway</span>
-          <span className="text-slate-400 font-mono">OpenAPI 3.0 &bull; 645 Active Datasets</span>
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1">
+            <span>&copy; 2026</span>
+            <button
+              onClick={() => setIsTeamModalOpen(true)}
+              className="text-slate-200 font-bold hover:text-indigo-400 hover:underline inline-flex items-center gap-1 transition-colors cursor-pointer"
+              title="Lihat Tim Pengembang TitaniaLabs"
+            >
+              <span>TitaniaLabs</span>
+              <Users className="w-3.5 h-3.5 text-indigo-400" />
+            </button>
+            <span>&bull; Portal Satu Data & API Gateway Kabupaten Trenggalek</span>
+          </div>
+          
+          <div className="flex items-center space-x-4 shrink-0">
+            <button
+              onClick={() => setIsArchDocsOpen(true)}
+              className="text-cyan-400 font-semibold hover:text-cyan-300 hover:underline flex items-center gap-1.5 transition-colors cursor-pointer"
+            >
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <span>Dokumentasi Arsitektur & Keamanan Gateway</span>
+            </button>
+
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-400 font-mono">OpenAPI 3.0 &bull; 645 Datasets</span>
+          </div>
         </div>
       </footer>
 

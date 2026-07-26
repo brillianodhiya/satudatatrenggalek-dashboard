@@ -16,7 +16,7 @@ export const FloatingAiChat: React.FC = () => {
     {
       id: '1',
       sender: 'ai',
-      text: 'Selamat datang! Saya Asisten AI Resmi Satu Data Trenggalek ditenagai Groq Llama-3.3 70B. Ada data statistik sektoral atau rekomendasi kebijakan daerah yang ingin Anda tanyakan?',
+      text: 'Selamat datang! Saya Asisten Data Kabupaten Trenggalek. Ada data statistik sektoral atau rekomendasi kebijakan daerah yang ingin Anda tanyakan?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);

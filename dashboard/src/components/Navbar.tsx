@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, dataset
                   PEMKAB TRENGGALEK
                 </h1>
                 <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold rounded bg-slate-900 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">
-                  Satu Data & AI
+                  Satu Data Trenggalek
                 </span>
               </div>
               <p className="text-[10px] sm:text-xs text-slate-400 font-medium truncate">
@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, dataset
               }`}
             >
               <FileText className="w-4 h-4 text-amber-400" />
-              <span>Rekomendasi Kebijakan AI</span>
+              <span>Analisis Kebijakan</span>
             </button>
 
             <button
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, dataset
             }`}
           >
             <FileText className="w-4 h-4 text-amber-400" />
-            <span>Rekomendasi Kebijakan AI</span>
+            <span>Analisis Kebijakan</span>
           </button>
 
           <button

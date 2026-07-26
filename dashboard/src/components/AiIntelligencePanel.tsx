@@ -9,25 +9,25 @@ export const AiIntelligencePanel: React.FC = () => {
     topPriorityKecamatan: 'Kecamatan Dongko & Kecamatan Pule',
     policyRecommendations: [
       {
-        sektor: 'Pemberdayaan Perempuan & Anak',
-        rekomendasi: 'Meningkatkan keterwakilan perempuan di DPR dan DPRD melalui pelatihan dan pendampingan bagi calon perempuan.',
-        dampak: 'Meningkatkan persentase keterwakilan perempuan di DPR dan DPRD menjadi 15% dalam 12 bulan.'
+        sektor: 'Kesehatan & Gizi (Stunting)',
+        rekomendasi: 'Percepatan intervensi gizi terpadu dan penambahan fasilitas Puskesmas Rawat Inap di wilayah prioritas (Kec. Pule & Dongko).',
+        dampak: 'Menekan prevalensi stunting hingga 7.8% pada akhir 2026.'
       },
       {
-        sektor: 'Pengembangan Ekonomi & Investasi',
-        rekomendasi: 'Mengembangkan program pengembangan usaha mikro, kecil, dan menengah (UMKM) untuk meningkatkan kesempatan kerja.',
-        dampak: 'Meningkatkan jumlah UMKM menjadi 500 unit & meningkatkan pendapatan 10%.'
+        sektor: 'Infrastruktur & Pariwisata',
+        rekomendasi: 'Akselerasi penuntasan Jalur Lintas Selatan (JLS) Watulimo-Munjungan dan integrasi promosi wisata bahari terpadu.',
+        dampak: 'Target peningkatan kunjungan wisatawan hingga 1.5 Juta Pax/tahun.'
       },
       {
-        sektor: 'Pengembangan SDM & Digitalisasi',
-        rekomendasi: 'Mengembangkan program pelatihan dan pendidikan untuk meningkatkan kemampuan dan keterampilan masyarakat.',
-        dampak: 'Meningkatkan jumlah masyarakat berteknologi menjadi 2.000 orang dalam 12 bulan.'
+        sektor: 'Pemberdayaan SDM & Ekonomi Desa',
+        rekomendasi: 'Pendampingan literasi digital Bumdes serta fasilitasi sertifikasi halal & legalitas produk UMKM olahan lokal.',
+        dampak: 'Transformasi 43 Desa Maju menjadi Desa Mandiri penuh.'
       }
     ]
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState<string>('Otomatis (Llama-3.3 70B)');
+  const [lastUpdated, setLastUpdated] = useState<string>('Analisis AI (Llama-3.3 70B)');
 
   const fetchAiPolicy = async () => {
     setIsLoading(true);
@@ -37,7 +37,7 @@ export const AiIntelligencePanel: React.FC = () => {
         const json = await res.json();
         if (json.data) {
           setInsight(json.data);
-          setLastUpdated(json.source === 'cache' ? 'Terbarui via Cron (Llama-3.3 70B)' : 'Terbarui Secara Live');
+          setLastUpdated(json.source === 'cache' ? 'Terbarui via Cache Cron' : 'Terbarui Secara Live');
         }
       }
     } catch {
@@ -62,7 +62,7 @@ export const AiIntelligencePanel: React.FC = () => {
             <Brain className="w-5 h-5 text-cyan-400 shrink-0" />
             <div>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">Ringkasan Analisis Kebijakan Eksekutif</h3>
-              <p className="text-xs text-slate-400">Rekomendasi strategis berbasis AI Groq Llama-3.3 70B dari data statistik 2025</p>
+              <p className="text-xs text-slate-400">Rekomendasi strategis otomatis dari data statistik 645 dataset sektoral 2025/2026</p>
             </div>
           </div>
 
@@ -90,7 +90,7 @@ export const AiIntelligencePanel: React.FC = () => {
         {/* Policy Recommendations Header */}
         <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
           <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
-          <span>Rekomendasi Kebijakan Prioritas AI (Groq Llama-3.3 70B):</span>
+          <span>Rekomendasi Kebijakan Prioritas:</span>
         </h4>
 
         {/* Fully Responsive Grid (1 Column on Mobile/Tablet, 3 Columns on Large Screens) */}
