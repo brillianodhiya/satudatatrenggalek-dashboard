@@ -28,95 +28,95 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="border-b border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 shadow-xs transition-colors">
+    <header className="border-b border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0B0F19] sticky top-0 z-40 shadow-sm dark:shadow-lg transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           
           {/* Official Logo & Branding Header */}
           <div className="flex items-center space-x-2.5 min-w-0 pr-2">
             <img
               src={logoTrenggalek}
               alt="Lambang Kabupaten Trenggalek"
-              className="w-8 h-10 sm:w-10 sm:h-12 object-contain shrink-0 drop-shadow-sm"
+              className="w-8 h-10 sm:w-9 sm:h-11 object-contain shrink-0 drop-shadow-sm"
             />
             <div className="min-w-0">
               <div className="flex items-center space-x-1.5">
-                <h1 className="text-xs sm:text-base font-extrabold text-slate-900 dark:text-white tracking-tight truncate font-display">
+                <h1 className="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white tracking-tight truncate font-display">
                   PEMKAB TRENGGALEK
                 </h1>
-                <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold rounded-full bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 uppercase tracking-wider">
+                <span className="hidden sm:inline-block px-2 py-0.5 text-[9px] font-bold rounded-full bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/30 uppercase tracking-wider whitespace-nowrap">
                   Satu Data Trenggalek
                 </span>
               </div>
-              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium truncate">
-                Portal Statistik Sektoral & Gateway
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium truncate">
+                Portal Statistik Sektoral &amp; Gateway
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation Tabs - Pill Shaped */}
-          <nav className="hidden md:flex items-center space-x-2 bg-slate-100/70 dark:bg-slate-800/80 p-1.5 rounded-full border border-slate-200/70 dark:border-slate-700/80">
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100/80 dark:bg-white/5 p-1 rounded-full border border-slate-200 dark:border-white/10">
             <button
               onClick={() => handleTabClick('dashboard')}
-              className={`px-4 py-2 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
                 activeTab === 'dashboard'
                   ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/60'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10'
               }`}
             >
-              <LayoutDashboard className={`w-4 h-4 ${activeTab === 'dashboard' ? 'text-cyan-400 dark:text-cyan-600' : 'text-slate-500 dark:text-slate-400'}`} />
+              <LayoutDashboard className={`w-3.5 h-3.5 ${activeTab === 'dashboard' ? 'text-cyan-500 dark:text-cyan-600' : 'text-slate-400 dark:text-slate-500'}`} />
               <span>Dashboard Eksekutif</span>
             </button>
 
             <button
               onClick={() => handleTabClick('ai')}
-              className={`px-4 py-2 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
                 activeTab === 'ai'
                   ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/60'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10'
               }`}
             >
-              <FileText className={`w-4 h-4 ${activeTab === 'ai' ? 'text-amber-400 dark:text-amber-600' : 'text-slate-500 dark:text-slate-400'}`} />
+              <FileText className={`w-3.5 h-3.5 ${activeTab === 'ai' ? 'text-amber-500 dark:text-amber-600' : 'text-slate-400 dark:text-slate-500'}`} />
               <span>Analisis Kebijakan</span>
             </button>
 
             <button
               onClick={() => handleTabClick('openapi')}
-              className={`px-4 py-2 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-bold flex items-center space-x-2 transition-all ${
                 activeTab === 'openapi'
                   ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/60'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10'
               }`}
             >
-              <Code2 className={`w-4 h-4 ${activeTab === 'openapi' ? 'text-emerald-400 dark:text-emerald-600' : 'text-slate-500 dark:text-slate-400'}`} />
+              <Code2 className={`w-3.5 h-3.5 ${activeTab === 'openapi' ? 'text-emerald-500 dark:text-emerald-600' : 'text-slate-400 dark:text-slate-500'}`} />
               <span>Dokumentasi API</span>
             </button>
           </nav>
 
           {/* Theme Dropdown Switcher Button & Gateway Status Badge */}
           <div className="flex items-center space-x-2 shrink-0">
-            
+
             {/* Compact Theme Dropdown Switcher Button */}
             <div className="relative">
               <button
                 onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all text-xs font-semibold shrink-0 cursor-pointer shadow-2xs"
+                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/15 transition-all text-xs font-semibold shrink-0 cursor-pointer"
                 aria-label="Toggle Theme Menu"
               >
-                {themeMode === 'system' && <Monitor className="w-3.5 h-3.5 text-cyan-500" />}
-                {themeMode === 'light' && <Sun className="w-3.5 h-3.5 text-amber-500" />}
-                {themeMode === 'dark' && <Moon className="w-3.5 h-3.5 text-cyan-400" />}
-                <span className="capitalize text-[11px] font-bold">
+                {themeMode === 'system' && <Monitor className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />}
+                {themeMode === 'light' && <Sun className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />}
+                {themeMode === 'dark' && <Moon className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />}
+                <span className="capitalize text-[11px] font-bold hidden sm:inline">
                   {themeMode === 'system' ? 'Sistem' : themeMode === 'light' ? 'Terang' : 'Gelap'}
                 </span>
-                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${themeDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 dark:text-slate-400 transition-transform duration-200 ${themeDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Floating Dropdown Menu */}
               {themeDropdownOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setThemeDropdownOpen(false)}></div>
-                  <div className="absolute right-0 mt-2 w-36 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl py-1.5 z-50 animate-in fade-in slide-in-from-top-1">
+                  <div className="absolute right-0 mt-2 w-36 rounded-2xl bg-white dark:bg-[#0F1729] border border-slate-200 dark:border-slate-700 shadow-2xl py-1.5 z-50 animate-in fade-in slide-in-from-top-1">
                     <button
                       onClick={() => {
                         setThemeMode('system');
@@ -124,12 +124,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }}
                       className={`w-full px-3.5 py-2 text-left text-xs flex items-center justify-between transition-colors cursor-pointer ${
                         themeMode === 'system'
-                          ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-extrabold'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium'
+                          ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white font-extrabold'
+                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white font-medium'
                       }`}
                     >
                       <div className="flex items-center space-x-2">
-                        <Monitor className="w-3.5 h-3.5 text-cyan-500" />
+                        <Monitor className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                         <span>Sistem OS</span>
                       </div>
                       {themeMode === 'system' && <span className="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>}
@@ -142,15 +142,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }}
                       className={`w-full px-3.5 py-2 text-left text-xs flex items-center justify-between transition-colors cursor-pointer ${
                         themeMode === 'light'
-                          ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 font-extrabold'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium'
+                          ? 'bg-amber-50 dark:bg-white/10 text-amber-900 dark:text-white font-extrabold'
+                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white font-medium'
                       }`}
                     >
                       <div className="flex items-center space-x-2">
-                        <Sun className="w-3.5 h-3.5 text-amber-500" />
+                        <Sun className="w-3.5 h-3.5 text-amber-400" />
                         <span>Terang</span>
                       </div>
-                      {themeMode === 'light' && <span className="w-1.5 h-1.5 rounded-full bg-amber-600"></span>}
+                      {themeMode === 'light' && <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>}
                     </button>
 
                     <button
@@ -160,8 +160,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }}
                       className={`w-full px-3.5 py-2 text-left text-xs flex items-center justify-between transition-colors cursor-pointer ${
                         themeMode === 'dark'
-                          ? 'bg-cyan-50 dark:bg-cyan-950/60 text-cyan-900 dark:text-cyan-300 font-extrabold'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium'
+                          ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white font-extrabold'
+                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white font-medium'
                       }`}
                     >
                       <div className="flex items-center space-x-2">
@@ -175,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            <div className="hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+            <div className="hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs">
               <Server className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span className="text-slate-700 dark:text-slate-300 font-mono font-bold">{datasetCount} Datasets Active</span>
             </div>
@@ -183,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Hamburger Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors shrink-0"
+              className="md:hidden p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/15 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/15 transition-colors shrink-0"
               aria-label="Toggle Mobile Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -195,16 +195,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Slide-Down Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-3 space-y-2 animate-in fade-in slide-in-from-top-2 transition-colors shadow-lg">
+        <div className="md:hidden bg-white dark:bg-[#0F1729] border-b border-slate-200 dark:border-white/10 px-4 py-3 space-y-1.5 animate-in fade-in slide-in-from-top-2 shadow-lg">
           <button
             onClick={() => handleTabClick('dashboard')}
             className={`w-full px-4 py-2.5 rounded-full text-xs flex items-center space-x-3 transition-colors ${
               activeTab === 'dashboard'
                 ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold shadow-sm'
-                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium'
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white font-medium'
             }`}
           >
-            <LayoutDashboard className={`w-4 h-4 ${activeTab === 'dashboard' ? 'text-cyan-400 dark:text-cyan-600' : 'text-slate-500 dark:text-slate-400'}`} />
+            <LayoutDashboard className={`w-4 h-4 ${activeTab === 'dashboard' ? 'text-cyan-400 dark:text-cyan-600' : 'text-slate-400 dark:text-slate-500'}`} />
             <span>Dashboard Eksekutif</span>
           </button>
 
@@ -213,10 +213,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             className={`w-full px-4 py-2.5 rounded-full text-xs flex items-center space-x-3 transition-colors ${
               activeTab === 'ai'
                 ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold shadow-sm'
-                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium'
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white font-medium'
             }`}
           >
-            <FileText className={`w-4 h-4 ${activeTab === 'ai' ? 'text-amber-400 dark:text-amber-600' : 'text-slate-500 dark:text-slate-400'}`} />
+            <FileText className={`w-4 h-4 ${activeTab === 'ai' ? 'text-amber-400 dark:text-amber-600' : 'text-slate-400 dark:text-slate-500'}`} />
             <span>Analisis Kebijakan</span>
           </button>
 
@@ -225,14 +225,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             className={`w-full px-4 py-2.5 rounded-full text-xs flex items-center space-x-3 transition-colors ${
               activeTab === 'openapi'
                 ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold shadow-sm'
-                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium'
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white font-medium'
             }`}
           >
-            <Code2 className={`w-4 h-4 ${activeTab === 'openapi' ? 'text-emerald-400 dark:text-emerald-600' : 'text-slate-500 dark:text-slate-400'}`} />
+            <Code2 className={`w-4 h-4 ${activeTab === 'openapi' ? 'text-emerald-400 dark:text-emerald-600' : 'text-slate-400 dark:text-slate-500'}`} />
             <span>Dokumentasi API</span>
           </button>
 
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+          <div className="pt-2 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-500 font-mono">
             <span>Gateway Status: Active</span>
             <span className="text-emerald-600 dark:text-emerald-400 font-bold">{datasetCount} Datasets</span>
           </div>

@@ -207,26 +207,26 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
       
       {/* 1. Predictive Forecasting Chart (Line/Area Chart - 2 Cols) */}
-      <div className="lg:col-span-2 glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
-          <div className="flex items-center space-x-2.5">
-            <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
-              <TrendingUp className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+      <div className="lg:col-span-2 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
+          <div className="flex items-center space-x-2">
+            <div className="p-1.5 rounded-lg bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800">
+              <TrendingUp className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">{meta.title}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{meta.subtitle} ({selectedTahun})</p>
+              <h3 className="text-xs font-extrabold text-slate-900 dark:text-white">{meta.title}</h3>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{meta.subtitle} ({selectedTahun})</p>
             </div>
           </div>
-          <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-[11px] font-mono font-bold">
+          <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-[10px] font-mono font-bold whitespace-nowrap">
             Model Machine Learning
           </span>
         </div>
 
-        <div className="h-64 sm:h-72 w-full">
+        <div className="h-52 sm:h-60 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={forecastData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
               <defs>
@@ -240,10 +240,10 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="tahun" stroke="#94A3B8" fontSize={11} />
-              <YAxis stroke="#94A3B8" fontSize={11} />
+              <XAxis dataKey="tahun" stroke="#94A3B8" fontSize={10} />
+              <YAxis stroke="#94A3B8" fontSize={10} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+              <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '8px' }} />
               <Area
                 type="monotone"
                 dataKey="aktual"
@@ -269,27 +269,27 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
       </div>
 
       {/* 2. Status Distribution (Pie Chart - 1 Col) */}
-      <div className="glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex flex-col justify-between">
+      <div className="rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-between">
         <div>
-          <div className="flex items-center space-x-2.5 mb-3">
-            <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-              <PieIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <div className="flex items-center space-x-2 mb-3">
+            <div className="p-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800">
+              <PieIcon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">Distribusi Sektoral</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Komposisi Indikator Pembangunan</p>
+              <h3 className="text-xs font-extrabold text-slate-900 dark:text-white">Distribusi Sektoral</h3>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Komposisi Indikator Pembangunan</p>
             </div>
           </div>
 
-          <div className="h-52 w-full relative">
+          <div className="h-44 w-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={50}
-                  outerRadius={75}
+                  innerRadius={45}
+                  outerRadius={68}
                   paddingAngle={4}
                   dataKey="value"
                 >
@@ -304,42 +304,42 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
         </div>
 
         {/* Legend */}
-        <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
+        <div className="grid grid-cols-2 gap-1.5 pt-2.5 border-t border-slate-100 dark:border-slate-800">
           {pieData.map((item, idx) => (
-            <div key={idx} className="flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }}></span>
-              <span className="text-slate-600 dark:text-slate-400 font-medium text-[11px] truncate">{item.name}:</span>
-              <strong className="text-slate-900 dark:text-white text-[11px] font-bold">{item.value}</strong>
+            <div key={idx} className="flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }}></span>
+              <span className="text-slate-600 dark:text-slate-400 font-medium text-[10px] truncate">{item.name}:</span>
+              <strong className="text-slate-900 dark:text-white text-[10px] font-bold">{item.value}</strong>
             </div>
           ))}
         </div>
       </div>
 
       {/* 3. Perbandingan Metric 14 Kecamatan (Bar Chart - Full Row) */}
-      <div className="lg:col-span-3 glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
-          <div className="flex items-center space-x-2.5">
-            <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
-              <BarChart3 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+      <div className="lg:col-span-3 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
+          <div className="flex items-center space-x-2">
+            <div className="p-1.5 rounded-lg bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800">
+              <BarChart3 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
-                Perbandingan Metrik {selectedSektor === '1' ? 'Prevalensi Stunting' : selectedSektor === '3' ? 'Kunjungan Wisatawan' : selectedSektor === '4' ? 'PDRB Ekonomi' : selectedSektor === '5' ? 'Desa Mandiri' : 'Skor IKM'} 14 Kecamatan
+              <h3 className="text-xs font-extrabold text-slate-900 dark:text-white">
+                Perbandingan {selectedSektor === '1' ? 'Stunting' : selectedSektor === '3' ? 'Wisatawan' : selectedSektor === '4' ? 'PDRB' : selectedSektor === '5' ? 'Desa Mandiri' : 'IKM'} — 14 Kecamatan
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                Perbandingan capaian sektoral antar wilayah kecamatan Kabupaten Trenggalek ({selectedTahun})
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                Capaian sektoral antar wilayah kecamatan Kab. Trenggalek ({selectedTahun})
               </p>
             </div>
           </div>
-          <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[11px] font-bold">
-            {selectedKecamatan !== 'ALL' ? `Sorot: Kecamatan ID #${selectedKecamatan}` : '14 Kecamatan Aktif'}
+          <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold whitespace-nowrap">
+            {selectedKecamatan !== 'ALL' ? `Sorot: Kec. #${selectedKecamatan}` : '14 Kecamatan Aktif'}
           </span>
         </div>
 
-        <div className="h-72 w-full overflow-x-auto">
+        <div className="h-60 w-full overflow-x-auto">
           <div className="h-full min-w-[650px] sm:min-w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={kecamatanBarData} margin={{ top: 10, right: 15, left: -10, bottom: 45 }}>
+              <BarChart data={kecamatanBarData} margin={{ top: 5, right: 15, left: -10, bottom: 45 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" className="dark:opacity-20" />
                 <XAxis
                   dataKey="nama"
@@ -350,9 +350,9 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                   textAnchor="end"
                   height={50}
                 />
-                <YAxis stroke="#64748B" fontSize={11} domain={getYDomain()} />
+                <YAxis stroke="#64748B" fontSize={10} domain={getYDomain()} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="displayMetric" name={kecamatanBarData[0]?.metricLabel || 'Capaian'} fill="#0284C7" radius={[6, 6, 0, 0]}>
+                <Bar dataKey="displayMetric" name={kecamatanBarData[0]?.metricLabel || 'Capaian'} fill="#0284C7" radius={[4, 4, 0, 0]}>
                   {kecamatanBarData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
@@ -374,4 +374,4 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
 
     </div>
   );
-};
+};

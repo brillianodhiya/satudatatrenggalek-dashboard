@@ -95,7 +95,7 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
                 <strong className="text-slate-200">Kerentanan Asli:</strong> Format JSON origin kadang menyisipkan tag HTML, string tidak konsisten, atau struktur data mentah.
               </p>
               <p className="text-slate-300">
-                <strong className="text-emerald-400">Solusi Gateway:</strong> Mengonversi otomatis 645 dataset ke dalam standar **OpenAPI 3.0 (Swagger)** siap pakai oleh developer.
+                <strong className="text-emerald-400">Solusi Gateway:</strong> Mengonversi otomatis 645 dataset ke dalam standar <strong className="text-white">OpenAPI 3.0 (Swagger)</strong> siap pakai oleh developer.
               </p>
             </div>
 
@@ -106,7 +106,7 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
                 <span>4. Throttling & DDoS Absorption</span>
               </div>
               <p className="text-slate-400">
-                <strong className="text-slate-200">Kerentanan Asli:</strong> Server origin dapat mengalami *crash* jika menerima *scraping* / bot otomatis beruntun.
+                <strong className="text-slate-200">Kerentanan Asli:</strong> Server origin dapat mengalami <em>crash</em> jika menerima <em>scraping</em> / bot otomatis beruntun.
               </p>
               <p className="text-slate-300">
                 <strong className="text-emerald-400">Solusi Gateway:</strong> Gateway menyerap ribuan request berulang di layer proxy, menjaga server origin Pemkab tetap aman dan stabil.
