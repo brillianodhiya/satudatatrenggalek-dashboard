@@ -15,22 +15,22 @@ export const TitaniaLabsTeamModal: React.FC<TitaniaLabsTeamModalProps> = ({ isOp
   const auliaPhoto = null; // Replace with imported image or path when available
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-200">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-colors">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950/90">
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/90">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2.5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
               <Building2 className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Tim Pengembang TitaniaLabs
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                 Inovator di balik Trenggalek Smart Data & API Gateway System
               </p>
             </div>
@@ -38,7 +38,7 @@ export const TitaniaLabsTeamModal: React.FC<TitaniaLabsTeamModalProps> = ({ isOp
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
             aria-label="Tutup Modal"
           >
             <X className="w-5 h-5" />
@@ -46,7 +46,7 @@ export const TitaniaLabsTeamModal: React.FC<TitaniaLabsTeamModalProps> = ({ isOp
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="p-5 sm:p-7 overflow-y-auto space-y-6 text-xs text-slate-300">
+        <div className="p-5 sm:p-7 overflow-y-auto space-y-6 text-xs text-slate-700 dark:text-slate-300 bg-[#F3F4F8]/50 dark:bg-[#0B0F19]">
           
           {/* About TitaniaLabs Banner */}
           <div className="p-4 rounded-xl bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/20 text-slate-300 leading-relaxed">

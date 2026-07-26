@@ -15,6 +15,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve Static Frontend Dashboard Assets with No-Cache Headers
+app.use('/dashboard', express.static(path.join(__dirname, '../public/dashboard'), { etag: false, maxAge: 0 }));
+app.use(express.static(path.join(__dirname, '../public'), { etag: false, maxAge: 0 }));
+
 // Load OpenAPI spec, cached data, and discovered dataset catalog
 const openApiPath = path.join(__dirname, '../public/openapi.json');
 const cachePath = path.join(__dirname, '../public/cache.json');

@@ -44,17 +44,17 @@ const SECTOR_PIE_ECONOMY = [
   { name: 'Jasa & Lainnya', value: 10, color: '#EC4899' }
 ];
 
-// Custom High-Contrast Tooltip
+// Custom High-Contrast Tooltip (Supports Light & Dark Modes)
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-slate-900 border border-slate-700 p-3 rounded-xl shadow-2xl text-xs z-50">
-        <p className="font-bold text-white mb-1.5 pb-1 border-b border-slate-800">{label}</p>
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3.5 rounded-2xl shadow-xl text-xs z-50">
+        <p className="font-bold text-slate-900 dark:text-white mb-1.5 pb-1 border-b border-slate-100 dark:border-slate-800">{label}</p>
         {payload.map((entry: any, index: number) => (
           <div key={index} className="flex items-center space-x-2 my-1">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.fill || entry.color }}></span>
-            <span className="text-slate-300 font-medium">{entry.name}:</span>
-            <strong className="text-white font-mono">{entry.value}</strong>
+            <span className="text-slate-600 dark:text-slate-400 font-medium">{entry.name}:</span>
+            <strong className="text-slate-900 dark:text-white font-mono font-bold">{entry.value}</strong>
           </div>
         ))}
       </div>
@@ -99,48 +99,48 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
           { tahun: '2023', aktual: 890, prediksi: undefined },
           { tahun: '2024', aktual: 1050, prediksi: undefined },
           { tahun: '2025', aktual: 1250, prediksi: 1250 },
-          { tahun: '2026 (Prediksi)', prediksi: 1480 },
-          { tahun: '2027 (Target)', prediksi: 1750 }
+          { tahun: '2026 (Prediksi)', prediksi: 1450 },
+          { tahun: '2027 (Target)', prediksi: 1680 }
         ];
-      case '4': // Ekonomi & Investasi
+      case '4': // Ekonomi
         return [
-          { tahun: '2021', aktual: 340, prediksi: undefined },
-          { tahun: '2022', aktual: 410, prediksi: undefined },
+          { tahun: '2021', aktual: 420, prediksi: undefined },
+          { tahun: '2022', aktual: 450, prediksi: undefined },
           { tahun: '2023', aktual: 480, prediksi: undefined },
           { tahun: '2024', aktual: 510, prediksi: undefined },
           { tahun: '2025', aktual: 582, prediksi: 582 },
-          { tahun: '2026 (Prediksi)', prediksi: 660 },
-          { tahun: '2027 (Target)', prediksi: 750 }
+          { tahun: '2026 (Prediksi)', prediksi: 640 },
+          { tahun: '2027 (Target)', prediksi: 720 }
         ];
-      case '5': // Pemberdayaan Desa
+      case '5': // Desa Mandiri
         return [
-          { tahun: '2021', aktual: 32, prediksi: undefined },
+          { tahun: '2021', aktual: 42, prediksi: undefined },
           { tahun: '2022', aktual: 54, prediksi: undefined },
           { tahun: '2023', aktual: 68, prediksi: undefined },
           { tahun: '2024', aktual: 85, prediksi: undefined },
           { tahun: '2025', aktual: 109, prediksi: 109 },
-          { tahun: '2026 (Prediksi)', prediksi: 130 },
+          { tahun: '2026 (Prediksi)', prediksi: 128 },
           { tahun: '2027 (Target)', prediksi: 152 }
         ];
-      case '6': // Infrastruktur
+      case '6': // Infrastruktur Jalan
         return [
-          { tahun: '2021', aktual: 68.4, prediksi: undefined },
-          { tahun: '2022', aktual: 72.1, prediksi: undefined },
+          { tahun: '2021', aktual: 71.5, prediksi: undefined },
+          { tahun: '2022', aktual: 73.8, prediksi: undefined },
           { tahun: '2023', aktual: 75.8, prediksi: undefined },
           { tahun: '2024', aktual: 78.2, prediksi: undefined },
           { tahun: '2025', aktual: 82.4, prediksi: 82.4 },
           { tahun: '2026 (Prediksi)', prediksi: 86.5 },
-          { tahun: '2027 (Target)', prediksi: 90.0 }
+          { tahun: '2027 (Target)', prediksi: 91.0 }
         ];
-      default: // ALL
+      default:
         return [
-          { tahun: '2021', aktual: 5400, prediksi: undefined },
-          { tahun: '2022', aktual: 5800, prediksi: undefined },
-          { tahun: '2023', aktual: 6200, prediksi: undefined },
-          { tahun: '2024', aktual: 6700, prediksi: undefined },
-          { tahun: '2025', aktual: 7200, prediksi: 7200 },
-          { tahun: '2026 (Prediksi)', prediksi: 7800 },
-          { tahun: '2027 (Target)', prediksi: 8400 }
+          { tahun: '2021', aktual: 80.1, prediksi: undefined },
+          { tahun: '2022', aktual: 82.1, prediksi: undefined },
+          { tahun: '2023', aktual: 84.5, prediksi: undefined },
+          { tahun: '2024', aktual: 85.2, prediksi: undefined },
+          { tahun: '2025', aktual: 88.6, prediksi: 88.6 },
+          { tahun: '2026 (Prediksi)', prediksi: 91.2 },
+          { tahun: '2027 (Target)', prediksi: 94.5 }
         ];
     }
   };
@@ -149,47 +149,19 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
   const getChartMetadata = () => {
     switch (selectedSektor) {
       case '1':
-        return {
-          title: 'Tren Prevalensi Stunting & Kesehatan Daerah (2021 - 2027)',
-          subtitle: 'Persentase Angka Stunting (%) & Target Penurunan',
-          unitName: 'Stunting (%)'
-        };
+        return { title: 'Tren Penurunan Stunting (%)', subtitle: 'Historis & Proyeksi Interventions Gizi', unitName: 'Stunting %' };
       case '2':
-        return {
-          title: 'Tren Angka Partisipasi Murni SD/SMP (2021 - 2027)',
-          subtitle: 'Capaian Pendidikan Murni (%) & Proyeksi 100%',
-          unitName: 'Partisipasi (%)'
-        };
+        return { title: 'Angka Partisipasi Sekolah (%)', subtitle: 'Tren APM SD/SMP Kab. Trenggalek', unitName: 'APM %' };
       case '3':
-        return {
-          title: 'Proyeksi Kunjungan Wisatawan Sektoral (2021 - 2027)',
-          subtitle: 'Total Kunjungan Wisatawan (Ribu Pax) & Target JLS',
-          unitName: 'Wisatawan (Ribu Pax)'
-        };
+        return { title: 'Total Kunjungan Wisatawan', subtitle: 'Proyeksi Kunjungan Wisata (Ribu Pax)', unitName: 'Ribu Pax' };
       case '4':
-        return {
-          title: 'Proyeksi Realisasi Nilai Investasi (2021 - 2027)',
-          subtitle: 'Nilai Penanaman Modal Sektor Ekonomi (Rp Milyar)',
-          unitName: 'Investasi (Rp Milyar)'
-        };
+        return { title: 'Realisasi Investasi Daerah', subtitle: 'Pertumbuhan Nilai Investasi (Milyar Rp)', unitName: 'Milyar Rp' };
       case '5':
-        return {
-          title: 'Pertumbuhan Jumlah Desa Mandiri IDM (2021 - 2027)',
-          subtitle: 'Akselerasi Status Desa Mandiri dari 152 Desa',
-          unitName: 'Desa Mandiri'
-        };
+        return { title: 'Akselerasi Desa Mandiri (IDM)', subtitle: 'Transformasi Desa Mandiri Kabupaten', unitName: 'Desa' };
       case '6':
-        return {
-          title: 'Cakupan Jalan Kabupaten Kondisi Mantap (2021 - 2027)',
-          subtitle: 'Panjang Kualitas Jalan Kabupaten (% Mantap)',
-          unitName: 'Jalan Mantap (%)'
-        };
+        return { title: 'Kemantapan Jalan Kabupaten (%)', subtitle: 'Progres Jalan Mantap PUPR', unitName: 'Jalan Mantap %' };
       default:
-        return {
-          title: 'Proyeksi Tren PDRB Pertanian & Ekonomi (2023 - 2028)',
-          subtitle: 'PDRB Sektor Pertanian & Ekonomi (Rp Milyar)',
-          unitName: 'PDRB (Rp Milyar)'
-        };
+        return { title: 'Indeks Reformasi Birokrasi (IRB)', subtitle: 'Tren Capaian IRB Kab. Trenggalek', unitName: 'Skor IRB' };
     }
   };
 
@@ -238,16 +210,18 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
       
       {/* 1. Predictive Forecasting Chart (Line/Area Chart - 2 Cols) */}
-      <div className="lg:col-span-2 glass-panel rounded-xl p-5 border border-slate-800 bg-slate-900/90">
+      <div className="lg:col-span-2 glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
           <div className="flex items-center space-x-2.5">
-            <TrendingUp className="w-4 h-4 text-cyan-400" />
+            <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
+              <TrendingUp className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-100">{meta.title}</h3>
-              <p className="text-xs text-slate-400">{meta.subtitle} ({selectedTahun})</p>
+              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">{meta.title}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{meta.subtitle} ({selectedTahun})</p>
             </div>
           </div>
-          <span className="px-2.5 py-0.5 rounded bg-slate-950 text-cyan-400 border border-slate-800 text-[11px] font-mono">
+          <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-[11px] font-mono font-bold">
             Model Machine Learning
           </span>
         </div>
@@ -257,17 +231,17 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
             <AreaChart data={forecastData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorAktual" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0284C7" stopOpacity={0.4} />
+                  <stop offset="5%" stopColor="#0284C7" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#0284C7" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorPrediksi" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.4} />
+                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-              <XAxis dataKey="tahun" stroke="#64748B" fontSize={11} />
-              <YAxis stroke="#64748B" fontSize={11} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis dataKey="tahun" stroke="#94A3B8" fontSize={11} />
+              <YAxis stroke="#94A3B8" fontSize={11} />
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               <Area
@@ -275,7 +249,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                 dataKey="aktual"
                 name={`Data Terpilih: ${meta.unitName}`}
                 stroke="#0284C7"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 fillOpacity={1}
                 fill="url(#colorAktual)"
               />
@@ -284,7 +258,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                 dataKey="prediksi"
                 name={`Model AI Forecasting (${meta.unitName})`}
                 stroke="#10B981"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 strokeDasharray="4 4"
                 fillOpacity={1}
                 fill="url(#colorPrediksi)"
@@ -295,13 +269,15 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
       </div>
 
       {/* 2. Status Distribution (Pie Chart - 1 Col) */}
-      <div className="glass-panel rounded-xl p-5 border border-slate-800 bg-slate-900/90 flex flex-col justify-between">
+      <div className="glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex flex-col justify-between">
         <div>
           <div className="flex items-center space-x-2.5 mb-3">
-            <PieIcon className="w-4 h-4 text-emerald-400" />
+            <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+              <PieIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-100">Distribusi Sektoral</h3>
-              <p className="text-xs text-slate-400">Komposisi Indikator Pembangunan</p>
+              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">Distribusi Sektoral</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Komposisi Indikator Pembangunan</p>
             </div>
           </div>
 
@@ -328,66 +304,71 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
         </div>
 
         {/* Legend */}
-        <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80 text-xs">
+        <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
           {pieData.map((item, idx) => (
             <div key={idx} className="flex items-center space-x-2">
               <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }}></span>
-              <span className="text-slate-300 font-medium text-[11px] truncate">{item.name}:</span>
-              <strong className="text-white text-[11px]">{item.value}</strong>
+              <span className="text-slate-600 dark:text-slate-400 font-medium text-[11px] truncate">{item.name}:</span>
+              <strong className="text-slate-900 dark:text-white text-[11px] font-bold">{item.value}</strong>
             </div>
           ))}
         </div>
       </div>
 
       {/* 3. Perbandingan Metric 14 Kecamatan (Bar Chart - Full Row) */}
-      <div className="lg:col-span-3 glass-panel rounded-xl p-5 border border-slate-800 bg-slate-900/90">
+      <div className="lg:col-span-3 glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
           <div className="flex items-center space-x-2.5">
-            <BarChart3 className="w-4 h-4 text-cyan-400" />
+            <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
+              <BarChart3 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-100">
+              <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
                 Perbandingan Metrik {selectedSektor === '1' ? 'Prevalensi Stunting' : selectedSektor === '3' ? 'Kunjungan Wisatawan' : selectedSektor === '4' ? 'PDRB Ekonomi' : selectedSektor === '5' ? 'Desa Mandiri' : 'Skor IKM'} 14 Kecamatan
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                 Perbandingan capaian sektoral antar wilayah kecamatan Kabupaten Trenggalek ({selectedTahun})
               </p>
             </div>
           </div>
-          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-semibold">
+          <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[11px] font-bold">
             {selectedKecamatan !== 'ALL' ? `Sorot: Kecamatan ID #${selectedKecamatan}` : '14 Kecamatan Aktif'}
           </span>
         </div>
 
-        <div className="h-64 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={kecamatanBarData} margin={{ top: 10, right: 10, left: -10, bottom: 25 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-              <XAxis
-                dataKey="nama"
-                stroke="#64748B"
-                fontSize={10}
-                interval={0}
-                angle={-25}
-                textAnchor="end"
-              />
-              <YAxis stroke="#64748B" fontSize={11} domain={getYDomain()} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="displayMetric" name={kecamatanBarData[0]?.metricLabel || 'Capaian'} fill="#0284C7" radius={[4, 4, 0, 0]}>
-                {kecamatanBarData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={
-                      selectedKecamatan !== 'ALL' && entry.id === selectedKecamatan
-                        ? '#10B981'
-                        : selectedSektor === '1' && entry.stuntingPct > 7
-                        ? '#EF4444'
-                        : '#0284C7'
-                    }
-                  />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="h-72 w-full overflow-x-auto">
+          <div className="h-full min-w-[650px] sm:min-w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={kecamatanBarData} margin={{ top: 10, right: 15, left: -10, bottom: 45 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" className="dark:opacity-20" />
+                <XAxis
+                  dataKey="nama"
+                  stroke="#64748B"
+                  fontSize={10}
+                  interval={0}
+                  angle={-35}
+                  textAnchor="end"
+                  height={50}
+                />
+                <YAxis stroke="#64748B" fontSize={11} domain={getYDomain()} />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar dataKey="displayMetric" name={kecamatanBarData[0]?.metricLabel || 'Capaian'} fill="#0284C7" radius={[6, 6, 0, 0]}>
+                  {kecamatanBarData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={
+                        selectedKecamatan !== 'ALL' && entry.id === selectedKecamatan
+                          ? '#10B981'
+                          : selectedSektor === '1' && entry.stuntingPct > 7
+                          ? '#F43F5E'
+                          : '#0284C7'
+                      }
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 

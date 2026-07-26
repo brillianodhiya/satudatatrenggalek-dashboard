@@ -10,22 +10,22 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-200">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-colors">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950/90">
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/90">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <div className="p-2.5 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Arsitektur Keamanan & Proteksi Gateway
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                 Bagaimana API Gateway memproteksi kerentanan server asal Pemkab Trenggalek
               </p>
             </div>
@@ -33,7 +33,7 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
             aria-label="Tutup Modal"
           >
             <X className="w-5 h-5" />
@@ -41,7 +41,7 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="p-5 sm:p-7 overflow-y-auto space-y-6 text-xs text-slate-300 leading-relaxed">
+        <div className="p-5 sm:p-7 overflow-y-auto space-y-6 text-xs text-slate-700 dark:text-slate-300 leading-relaxed bg-[#F3F4F8]/50 dark:bg-[#0B0F19]">
           
           {/* Executive Overview Banner */}
           <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/30 text-cyan-200 flex items-start space-x-3">
@@ -160,21 +160,17 @@ export const ArchitectureDocsModal: React.FC<ArchitectureDocsModalProps> = ({ is
               </table>
             </div>
           </div>
+        </div>
 
-          {/* Footer Callout */}
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-400">
-            <div className="flex items-center space-x-2 text-xs">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Gateway ini beroperasi sebagai <strong className="text-white">Reverse Proxy & Middleware Layer</strong> independen.</span>
-            </div>
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-800 text-white hover:bg-slate-700 transition-colors text-xs font-bold shrink-0"
-            >
-              Tutup Dokumentasi
-            </button>
-          </div>
-
+        {/* Modal Footer */}
+        <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 shrink-0">
+          <span className="font-mono text-[11px] font-bold text-slate-400 dark:text-slate-500">Security Architecture Status: Active Protection</span>
+          <button
+            onClick={onClose}
+            className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 font-bold text-xs transition-colors cursor-pointer shadow-sm"
+          >
+            Tutup Dokumentasi
+          </button>
         </div>
 
       </div>

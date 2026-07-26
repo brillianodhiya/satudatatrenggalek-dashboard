@@ -113,90 +113,79 @@ export const RealDataTable: React.FC<RealDataTableProps> = ({
   };
 
   return (
-    <div className="glass-panel rounded-2xl p-4 sm:p-6 border border-slate-800 mb-8 bg-slate-900/90 shadow-lg">
+    <div className="glass-panel rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 mb-8 bg-white/90 dark:bg-slate-900/90 shadow-sm">
       
-      {/* Executive Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
-        <div>
+      {/* Table Header Controls */}
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="w-full md:w-auto flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-1">
-            <h3 className="text-sm sm:text-base font-bold text-white">
-              Tabel 98 Indikator Kinerja Pembangunan Daerah ({selectedTahun})
-              {selectedKec && <span className="text-cyan-400 font-semibold ml-2">— Kec. {selectedKec.nama}</span>}
+            <h3 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white leading-snug">
+              Tabel 98 Indikator Pembangunan (Keputusan Bupati ID #881)
             </h3>
-            <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-800 text-cyan-400 border border-slate-700 uppercase">
-              {filteredItems.length} Indikator Tampil
+            <span className="shrink-0 whitespace-nowrap px-2.5 py-0.5 text-[10px] font-bold font-mono rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              100% Real API
             </span>
           </div>
-          <p className="text-xs text-slate-400">
-            Daftar lengkap capaian statistik sektoral seluruh Dinas & OPD Kabupaten Trenggalek (Perbup No. 100.3.3.2/627/2024)
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+            Tabel indikator resmi perbup yang terhubung langsung secara real-time dengan API Gateway daerah.
           </p>
         </div>
 
-        <a
-          href="https://satudata.trenggalekkab.go.id/api_json/881"
-          target="_blank"
-          rel="noreferrer"
-          className="px-3 py-1.5 rounded-xl bg-slate-950 text-slate-300 border border-slate-800 text-xs font-semibold flex items-center space-x-2 hover:bg-slate-800 transition-colors shrink-0"
-        >
-          <span>Data JSON Original #881</span>
-          <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-        </a>
-      </div>
+        {/* Search Bar & OPD Filter */}
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto shrink-0 max-w-full">
+          
+          {/* Search Input */}
+          <div className="relative w-full sm:w-60 md:w-64">
+            <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-2.5" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Cari indikator atau dinas..."
+              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-full pl-9 pr-4 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:bg-white dark:focus:bg-slate-900 focus:border-cyan-500 transition-colors shadow-2xs"
+            />
+          </div>
 
-      {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-5">
-        
-        {/* Search Input */}
-        <div className="relative w-full sm:w-80">
-          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3.5 top-3" />
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Cari nama indikator atau nama dinas..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
-          />
-        </div>
-
-        {/* OPD Filter */}
-        <div className="flex items-center space-x-2 bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs w-full sm:w-auto">
-          <Filter className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <select
-            value={selectedOpd}
-            onChange={(e) => setSelectedOpd(e.target.value)}
-            className="bg-transparent text-slate-200 font-medium focus:outline-none w-full cursor-pointer text-xs"
-          >
-            <option value="ALL" className="bg-slate-900 text-slate-200">
-              Semua Dinas & OPD ({opdList.length} Produsen Data)
-            </option>
-            {opdList.map((opd, idx) => (
-              <option key={idx} value={opd} className="bg-slate-900 text-slate-200">
-                {opd}
+          {/* OPD Filter */}
+          <div className="flex items-center space-x-2 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-full px-3.5 py-2 text-xs w-full sm:w-64 min-w-0 shadow-2xs">
+            <Filter className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
+            <select
+              value={selectedOpd}
+              onChange={(e) => setSelectedOpd(e.target.value)}
+              className="bg-transparent text-slate-800 dark:text-white font-bold focus:outline-none w-full min-w-0 truncate cursor-pointer text-xs"
+            >
+              <option value="ALL" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                Semua Dinas & OPD ({opdList.length} Produsen)
               </option>
-            ))}
-          </select>
-        </div>
+              {opdList.map((opd, idx) => (
+                <option key={idx} value={opd} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                  {opd}
+                </option>
+              ))}
+            </select>
+          </div>
 
+        </div>
       </div>
 
       {/* Virtual Scroll Table Container with Fixed Height & Sticky Header */}
-      <div className="overflow-x-auto overflow-y-auto max-h-[520px] rounded-xl border border-slate-800 relative shadow-inner">
+      <div className="overflow-x-auto overflow-y-auto max-h-[520px] rounded-2xl border border-slate-200/80 dark:border-slate-800 relative shadow-2xs">
         <table className="w-full text-left text-xs border-collapse">
-          <thead className="sticky top-0 z-10 bg-slate-950 shadow-md">
-            <tr className="text-slate-400 font-mono text-[11px] uppercase border-b border-slate-800">
-              <th className="py-3 px-4 font-semibold w-12 text-center bg-slate-950">No</th>
-              <th className="py-3 px-4 font-semibold min-w-[240px] bg-slate-950">Indikator Kinerja Pembangunan</th>
-              <th className="py-3 px-4 font-semibold min-w-[140px] bg-slate-950">
+          <thead className="sticky top-0 z-10 bg-slate-100/90 dark:bg-slate-800/90 backdrop-blur-md shadow-2xs">
+            <tr className="text-slate-600 dark:text-slate-300 font-mono text-[11px] uppercase border-b border-slate-200 dark:border-slate-800">
+              <th className="py-3 px-4 font-bold w-12 text-center bg-slate-100/90 dark:bg-slate-800/90">No</th>
+              <th className="py-3 px-4 font-bold min-w-[240px] bg-slate-100/90 dark:bg-slate-800/90">Indikator Kinerja Pembangunan</th>
+              <th className="py-3 px-4 font-bold min-w-[140px] bg-slate-100/90 dark:bg-slate-800/90">
                 Capaian ({selectedKec ? `Kec. ${selectedKec.nama}` : selectedTahun})
               </th>
-              <th className="py-3 px-4 font-semibold min-w-[180px] bg-slate-950">Dinas / OPD Produsen Data</th>
-              <th className="py-3 px-4 font-semibold min-w-[150px] bg-slate-950">Kategori & Dasar Hukum</th>
+              <th className="py-3 px-4 font-bold min-w-[180px] bg-slate-100/90 dark:bg-slate-800/90">Dinas / OPD Produsen Data</th>
+              <th className="py-3 px-4 font-bold min-w-[150px] bg-slate-100/90 dark:bg-slate-800/90">Kategori & Dasar Hukum</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 bg-slate-900/40">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900">
             {filteredItems.length === 0 ? (
               <tr>
-                <td colSpan={5} className="py-8 text-center text-slate-500 italic text-xs">
+                <td colSpan={5} className="py-8 text-center text-slate-400 dark:text-slate-500 italic text-xs">
                   Tidak ditemukan indikator yang sesuai dengan filter. Coba ubah opsi sektor atau kata kunci pencarian.
                 </td>
               </tr>
@@ -206,44 +195,44 @@ export const RealDataTable: React.FC<RealDataTableProps> = ({
                 const cleanOpd = formatOpdName(item.produsen_data);
 
                 return (
-                  <tr key={item.id} className="hover:bg-slate-800/40 transition-colors">
+                  <tr key={item.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
                     
                     {/* No */}
-                    <td className="py-3 px-4 text-center font-mono text-slate-500 text-[11px]">
+                    <td className="py-3 px-4 text-center font-mono text-slate-400 dark:text-slate-500 text-[11px] font-bold">
                       {index + 1}
                     </td>
 
                     {/* Indikator Name */}
-                    <td className="py-3 px-4 font-semibold text-slate-100 leading-snug">
+                    <td className="py-3 px-4 font-bold text-slate-900 dark:text-white leading-snug">
                       {item.nama_data}
                     </td>
 
                     {/* Combined Value + Unit Badge */}
                     <td className="py-3 px-4">
                       {formattedVal ? (
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-800/80 text-cyan-300 border border-slate-700/80 font-bold font-mono text-xs shadow-sm">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 font-extrabold font-mono text-xs shadow-2xs">
                           {formattedVal}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px]">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold">
                           Belum Diisi OPD
                         </span>
                       )}
                     </td>
 
                     {/* Cleaned OPD Name */}
-                    <td className="py-3 px-4 text-slate-300 font-medium">
+                    <td className="py-3 px-4 text-slate-700 dark:text-slate-300 font-bold">
                       {cleanOpd}
                     </td>
 
                     {/* Category & Legal Reference */}
                     <td className="py-3 px-4">
                       <div className="space-y-1">
-                        <span className="inline-block px-2 py-0.5 text-[9px] font-bold rounded bg-slate-800 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">
+                        <span className="inline-block px-2.5 py-0.5 text-[9px] font-extrabold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 uppercase tracking-wider font-mono">
                           IKU DAERAH
                         </span>
                         {item.sumber_referensi && (
-                          <p className="text-[10px] text-slate-400 truncate max-w-[180px]">
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate max-w-[180px] font-medium">
                             {item.sumber_referensi}
                           </p>
                         )}
