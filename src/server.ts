@@ -38,16 +38,31 @@ const policyCachePath = path.join(__dirname, '../public/ai_policy_summary.json')
 let swaggerDocument: any = {};
 let responseCache: Record<string, any> = {};
 let discoveredCatalog: any[] = [];
+let lastCacheLoadTime = 0;
 
-if (fs.existsSync(openApiPath)) {
-  swaggerDocument = JSON.parse(fs.readFileSync(openApiPath, 'utf-8'));
+function reloadCacheAndCatalogIfNeeded() {
+  try {
+    const cacheStat = fs.existsSync(cachePath) ? fs.statSync(cachePath).mtimeMs : 0;
+    if (cacheStat > lastCacheLoadTime) {
+      if (fs.existsSync(openApiPath)) {
+        swaggerDocument = JSON.parse(fs.readFileSync(openApiPath, 'utf-8'));
+      }
+      if (fs.existsSync(cachePath)) {
+        responseCache = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+      }
+      if (fs.existsSync(catalogPath)) {
+        discoveredCatalog = JSON.parse(fs.readFileSync(catalogPath, 'utf-8'));
+      }
+      lastCacheLoadTime = Date.now();
+      console.log(`🔄 Reloaded fresh cache.json (${Object.keys(responseCache).length} keys) & catalog (${discoveredCatalog.length} items) from disk.`);
+    }
+  } catch (err: any) {
+    console.error('❌ Failed to reload cache from disk:', err.message);
+  }
 }
-if (fs.existsSync(cachePath)) {
-  responseCache = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
-}
-if (fs.existsSync(catalogPath)) {
-  discoveredCatalog = JSON.parse(fs.readFileSync(catalogPath, 'utf-8'));
-}
+
+// Initial load
+reloadCacheAndCatalogIfNeeded();
 
 // Function to generate fresh AI Policy Summary using Groq Llama-3.3 70B
 async function generateAiPolicySummary() {
@@ -180,6 +195,70 @@ app.get('/openapi.json', (req, res) => {
   res.json(dynamicDoc);
 });
 
+// Data Quality Stats Endpoint — computed from real cache
+app.get('/api/v1/stats/data-quality', (req, res) => {
+  reloadCacheAndCatalogIfNeeded();
+  const catalogIds = discoveredCatalog.map((d: any) => d.id as number);
+  const EXCLUDED = new Set([834, 836]);
+
+  let withRealData = 0;
+  let emptyInCache = 0;
+  let notInCache = 0;
+  const emptyDatasets: { id: number; title: string; opd: string }[] = [];
+
+  for (const entry of discoveredCatalog as any[]) {
+    if (EXCLUDED.has(entry.id)) continue;
+    const key = `/json/${entry.id}`;
+    const cached = responseCache[key];
+
+    if (!cached) {
+      notInCache++;
+      continue;
+    }
+
+    const rows: any[] = Array.isArray(cached.data)
+      ? cached.data.filter((r: any) => r !== null && r !== undefined)
+      : [];
+
+    const hasRealData = rows.length > 0 && rows.some((r: any) => {
+      const fields = Object.keys(r).filter(f => f !== 'id');
+      return fields.some(f => {
+        const v = r[f];
+        return v !== null && v !== undefined && v !== '' && v !== '0' && v !== 0;
+      });
+    });
+
+    if (hasRealData) {
+      withRealData++;
+    } else {
+      emptyInCache++;
+      if (emptyDatasets.length < 20) {
+        emptyDatasets.push({
+          id: entry.id,
+          title: entry.title || cached.judul || cached.tabel || `Dataset #${entry.id}`,
+          opd: cached.opd || '-'
+        });
+      }
+    }
+  }
+
+  const total = catalogIds.length;
+  const coveragePct = Math.round((withRealData / total) * 100);
+
+  res.json({
+    status: 'success',
+    lastChecked: new Date().toISOString(),
+    summary: {
+      total,
+      withRealData,
+      emptyInCache,
+      notInCache,
+      coveragePct
+    },
+    emptyDatasets
+  });
+});
+
 // Helper function to fetch endpoint with cache & fallback
 async function fetchDatasetData(targetPath: string, targetUrl: string, clientUserAgent?: string): Promise<any> {
   if (responseCache[targetPath]) {
@@ -296,6 +375,7 @@ app.post('/api/v1/ai/chat', async (req, res) => {
   }
 
   try {
+    reloadCacheAndCatalogIfNeeded();
     // ─── RAG: Retrieve relevant datasets based on user query ───────────────
     const ragResults = retrieveRelevantDatasets(prompt, discoveredCatalog, responseCache, 4);
 

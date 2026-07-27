@@ -28,3 +28,4 @@ services:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
     depends_on:
       - trenggalek-api-gateway
+

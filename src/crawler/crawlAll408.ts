@@ -207,8 +207,8 @@ async function runFullCrawler() {
     for (let i = 0; i < datasetItems.length; i++) {
       const item = datasetItems[i];
 
-      if (scrapedDocIds.has(item.id)) {
-        continue; // Skip already scraped dataset
+      if (scrapedDocIds.has(item.id) && cacheMap[`/json/${item.id}`]) {
+        continue; // Skip only if BOTH doc metadata and cache payload exist
       }
 
       processedCount++;

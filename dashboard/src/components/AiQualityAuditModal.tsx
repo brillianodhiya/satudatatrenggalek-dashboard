@@ -60,12 +60,7 @@ export const AiQualityAuditModal: React.FC<AiQualityAuditModalProps> = ({
           <AiIntelligencePanel isCompact={false} />
 
           {/* Section 2: Data Quality & Integrity Audit */}
-          <DataQualityPanel
-            totalDatasets={645}
-            completeCount={dataset881Items.length > 0 ? dataset881Items.length : 98}
-            incompleteCount={4}
-            terbukaCount={645}
-          />
+          <DataQualityPanel />
 
         </div>
 
