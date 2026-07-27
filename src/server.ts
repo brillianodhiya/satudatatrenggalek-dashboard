@@ -9,6 +9,15 @@ import { fetchJsonWithBrowser, closeBrowserPool } from './utils/browserFetch';
 
 dotenv.config();
 
+// Helper: detect the public base URL from request (works behind Caddy/Nginx reverse proxy)
+function getBaseUrl(req: express.Request): string {
+  const envUrl = process.env.PUBLIC_URL;
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  const proto = (req.headers['x-forwarded-proto'] as string) || req.protocol;
+  const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || 'localhost:3000';
+  return `${proto}://${host}`;
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -140,8 +149,16 @@ function scheduleMidnightCron() {
 
 scheduleMidnightCron();
 
-// Swagger UI Route
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Swagger UI Route — dynamic server URL per request
+app.use('/docs', swaggerUi.serve);
+app.get('/docs', (req, res, next) => {
+  const baseUrl = getBaseUrl(req);
+  const dynamicDoc = {
+    ...swaggerDocument,
+    servers: [{ url: baseUrl, description: 'API Gateway' }]
+  };
+  swaggerUi.setup(dynamicDoc)(req, res, next);
+});
 
 // Serve React Executive Dashboard static files
 const dashboardDir = path.join(__dirname, '../public/dashboard');
@@ -152,9 +169,14 @@ if (fs.existsSync(dashboardDir)) {
   });
 }
 
-// Serve raw OpenAPI JSON
+// Serve raw OpenAPI JSON — dynamic server URL per request
 app.get('/openapi.json', (req, res) => {
-  res.json(swaggerDocument);
+  const baseUrl = getBaseUrl(req);
+  const dynamicDoc = {
+    ...swaggerDocument,
+    servers: [{ url: baseUrl, description: 'API Gateway' }]
+  };
+  res.json(dynamicDoc);
 });
 
 // Helper function to fetch endpoint with cache & fallback

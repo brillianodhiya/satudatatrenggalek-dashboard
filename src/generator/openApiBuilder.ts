@@ -1,6 +1,6 @@
 import { DatasetDoc } from '../types';
 
-export function buildOpenApiSpec(docs: DatasetDoc[]) {
+export function buildOpenApiSpec(docs: DatasetDoc[], gatewayUrl?: string) {
   const paths: Record<string, any> = {};
   const masterPathsSet = new Set<string>();
 
@@ -175,12 +175,8 @@ export function buildOpenApiSpec(docs: DatasetDoc[]) {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Local Proxy Gateway Server'
-      },
-      {
-        url: 'https://satudata.trenggalekkab.go.id',
-        description: 'Direct Trenggalek Portal Server'
+        url: gatewayUrl || 'http://localhost:3000',
+        description: gatewayUrl ? 'API Gateway (Production)' : 'Local Proxy Gateway Server'
       }
     ],
     paths
