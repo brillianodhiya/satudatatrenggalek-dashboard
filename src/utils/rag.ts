@@ -95,13 +95,17 @@ export function formatDatasetContext(
   rawData: any,
   maxRows = 15
 ): string {
-  if (!rawData) return '';
+  if (!rawData) {
+    return `📊 Dataset ID ${datasetId} — "${title}":\n  (Terdaftar di katalog, namun data belum di-cache atau belum tersedia).`;
+  }
 
   const rows: any[] = Array.isArray(rawData.data)
     ? rawData.data.filter((r: any) => r !== null && r !== undefined)
     : [];
 
-  if (rows.length === 0) return '';
+  if (rows.length === 0) {
+    return `📊 Dataset ID ${datasetId} — "${title}":\n  (Catatan: Dataset terdaftar di portal Satu Data Trenggalek oleh OPD ${rawData.opd || '-'}, namun rincian tabel per desa/kecamatan belum diisi / nilai 0).`;
+  }
 
   const sample = rows[0];
   const fields = Object.keys(sample).filter(k => k !== 'id');
@@ -113,7 +117,9 @@ export function formatDatasetContext(
     })
   ).slice(0, maxRows);
 
-  if (validRows.length === 0) return '';
+  if (validRows.length === 0) {
+    return `📊 Dataset ID ${datasetId} — "${title}":\n  (Catatan: Dataset terdaftar di portal Satu Data Trenggalek oleh OPD ${rawData.opd || '-'}, namun rincian tabel per desa/kecamatan belum diisi / nilai 0).`;
+  }
 
   const formatted = validRows.map((row: any) =>
     fields
@@ -125,7 +131,7 @@ export function formatDatasetContext(
       .join(' | ')
   ).join('\n  ');
 
-  return `DATASET ID ${datasetId} - "${title}":\n  ${formatted}`;
+  return `📊 Dataset ID ${datasetId} — "${title}":\n  ${formatted}`;
 }
 
 const EXCLUDED_IDS = new Set([881, 834, 836]);

@@ -376,21 +376,27 @@ app.post('/api/v1/ai/chat', async (req, res) => {
 
   try {
     reloadCacheAndCatalogIfNeeded();
-    // ─── RAG: Retrieve relevant datasets based on user query ───────────────
-    const ragResults = retrieveRelevantDatasets(prompt, discoveredCatalog, responseCache, 4);
+
+    // ─── RAG: Retrieve relevant datasets with Multi-Turn Context ────────────
+    const conversationContext = Array.isArray(history)
+      ? history.map((h: any) => h.content).join(' ')
+      : '';
+    const fullSearchQuery = `${conversationContext} ${prompt}`;
+
+    const ragResults = retrieveRelevantDatasets(fullSearchQuery, discoveredCatalog, responseCache, 4);
 
     const ragContext = ragResults.length > 0
       ? ragResults.map(r => r.formattedContext).join('\n\n')
       : 'Tidak ada dataset spesifik yang cocok dengan pertanyaan. Gunakan dataset 881 sebagai acuan umum.';
 
-    // Dataset 881 is always included as the core indicators base
+    // Dataset 881 is always included as the core indicators base (ALL 98 items included)
     const dataset881Data = responseCache['/json/881']?.data || [];
-    const datasetSummary = dataset881Data.slice(0, 50).map((item: any) =>
-      `- ${item.nama_data}: ${item.tahun_2025 || '0'} ${item.satuan || ''} (OPD: ${item.produsen_data})`
+    const datasetSummary = dataset881Data.map((item: any) =>
+      `- ${item.nama_data}: ${item.tahun_2025 || '0'} ${item.satuan || ''} (OPD: ${item.produsen_data || '-'})`
     ).join('\n');
 
     const ragDatasetIds = ragResults.map(r => `ID ${r.datasetId} (${r.title})`).join(', ');
-    console.log(`🔍 RAG Retrieved: ${ragDatasetIds || 'none'} for query: "${prompt.substring(0, 60)}"`);
+    console.log(`🔍 RAG Retrieved: ${ragDatasetIds || 'none'} for search: "${fullSearchQuery.substring(0, 60)}"`);
 
     const systemPrompt = `Kamu adalah **Satu — Asisten Data Trenggalek**, seorang analis data publik yang bekerja untuk membantu siapa saja memahami kondisi Kabupaten Trenggalek secara mendalam.
 
